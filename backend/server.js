@@ -9,7 +9,10 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: '*',
+  origin: [
+    "https://tutoring-platform-alpha.vercel.app",
+    "https://tutoring-platform-git-main-varshitak78-1947s-projects.vercel.app"
+  ],
   credentials: true
 }));
 
