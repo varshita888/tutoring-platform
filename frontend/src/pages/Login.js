@@ -10,17 +10,21 @@ export default function Login() {
   const { login } = useAuth();
   const navigate  = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(''); setLoading(true);
-    try {
-      const { data } = await API.post('/auth/login', form);
-      login(data);
-      navigate('/home');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally { setLoading(false); }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
+  setLoading(true);
+
+  try {
+    const { data } = await API.post('/api/auth/login', form); // ✅ fixed
+    login(data);
+    navigate('/home');
+  } catch (err) {
+    setError(err.response?.data?.message || 'Login failed. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={styles.page}>
